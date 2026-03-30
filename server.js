@@ -4,9 +4,8 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const errorHandler = require('./middleware/errorhandler');
 const authRoutes = require('./routes/auth');
-const jobRoutes = require('./routes/jobs');
-const applicationRoutes = require('./routes/applications');
-const { connect } = require('mongoose');
+const jobRoutes = require('./routes/job');
+const applicationRoutes = require('./routes/application');
 
 dotenv.config();
 connectDB();

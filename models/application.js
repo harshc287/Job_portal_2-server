@@ -8,4 +8,6 @@ const ApplicationSchema = new mongoose.Schema({
 
 ApplicationSchema.index({ userId: 1, jobId: 1 }, { unique: true });
 
-module.exports = mongoose.model('Application', ApplicationSchema);
+const Application = mongoose.models.Application || mongoose.model('Application', ApplicationSchema);
+
+module.exports = Application;
