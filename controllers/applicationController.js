@@ -4,7 +4,7 @@ const Job = require('../models/JobModel');
 console.log("Application model:", Application);
 console.log("Job model:", Job);
 
-// APPLY JOB
+
 exports.applyJob = async (req, res) => {
   try {
     const { jobId } = req.params;

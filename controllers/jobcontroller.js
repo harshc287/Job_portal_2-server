@@ -6,7 +6,7 @@ exports.createJob = async (req, res) => {
         const {title, description, location} = req.body
 
         const job = await Job.create({
-            title, description, location
+            title, description, location, createdBy: req.user._id,
         })        
 
         res.status(201).json(job)
@@ -20,10 +20,12 @@ exports.createJob = async (req, res) => {
 exports.getJobs = async (req, res) => {
     try {
         const page = +req.query.page || 1;
-        const limit = +req.query.limit || 10;
+        const limit = +req.query.limit || 3;
         const skip = (page - 1) * limit;
 
         let query = {};
+
+        
 
         if(req.query.search){
             query.$or =[
@@ -36,6 +38,7 @@ exports.getJobs = async (req, res) => {
             .skip(skip)
             .limit(limit)
             .sort({createdAt: -1})
+            .populate('createdBy', 'name email')
 
             const total = await Job.countDocuments(query)
 
